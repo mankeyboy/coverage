@@ -7,7 +7,7 @@ include_directories( ${OpenCV_INCLUDE_DIR} )
 include_directories( include )
 
 
-set( SHARED_SRC src/VoronoiDiagramGenerator.cpp include/VoronoiDiagramGenerator.h)
+set( SHARED_SRC src/VoronoiDiagramGenerator.cpp src/Coverage.cpp include/VoronoiDiagramGenerator.h include/Coverage.h)
 
 set( VORONOI_MAIN src/voronoi_main.cpp ${SHARED_SRC})
 
