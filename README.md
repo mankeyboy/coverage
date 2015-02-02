@@ -4,7 +4,7 @@ This subscribes the /obstacleList, and publishes the best positions according to
 To run the code, prerequisites are :
 * The swarm_simulator repository [1], should be set up on the system.
 
-To run the code following commands (on separate terminals):
-$ roslaunch swarm_simulator swarm.launch
-$ rosrun swarm_simulator swarm_simulator_node
-$ rosrun coverage voronoi_main <number of agents>
+To run the code following commands (on separate terminals): <\br>
+$ roslaunch swarm_simulator swarm.launch <\br>
+$ rosrun swarm_simulator swarm_simulator_node <\br>
+$ rosrun coverage voronoi_main [number of agents] 
