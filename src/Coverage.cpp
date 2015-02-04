@@ -34,8 +34,8 @@ void Coverage::DisplayPoints(vector<Point>& locations)
 	}
 
 	//Display coloured map
-	imshow("Locations",col_copy);
-	waitKey(0);
+	// imshow("Locations",col_copy);
+	// waitKey(0);
 
 	col_copy.release();
 
@@ -165,10 +165,12 @@ void Coverage::GetBestPositions(vector<Point>& positions)
 
 	//Final answer is the best estimate
 	positions = temp_centres;
-
+	for(i=0;i<positions.size();i++){
+		circle(work_copy,positions[i],3,Scalar(125),-1);
+	}	
 	//Show final partitions
-	imshow("Final partitions",work_copy);
-	waitKey(0);
+	imwrite("Partition.png",work_copy);
+	// waitKey(0);
 
 }
 

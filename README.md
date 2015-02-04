@@ -1,11 +1,10 @@
-(Edit this accordingly)
+This code repository is for coverrage of a given environment with obstacles of known size, using Centroidal Voronoi Tessellation.
+This subscribes the /obstacleList, and publishes the best positions according to the given environment on topic /coverage.
 
-Steps to run:
+To run the code, prerequisites are :
+* The swarm_simulator repository [1], should be set up on the system.
 
-1. Create build
-2. Go to build
-3. make ..
-4. make voronoi_main (this is what you should convert to a class eventually)
-5. run ./voronoi_main "image_file_name" "number of agents" 
-6. Final image shown is the final division - try out with map1 and see if you are getting problems
-
+To run the code following commands (on separate terminals): <br />
+$ roslaunch swarm_simulator swarm.launch <br />
+$ rosrun swarm_simulator swarm_simulator_node <br />
+$ rosrun coverage voronoi_main [number of agents] 
