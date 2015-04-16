@@ -14,6 +14,44 @@ Coverage::~Coverage()
 	map.release();
 }
 
+Point Coverage::GetNearestFreeCentroid(Point centre)
+{
+	//Will push centroid to nearest free location
+	//BFS (8-connected) used to get nearest point
+	int k,l,r=map.rows,c=map.cols;
+	vector< vector<bool> > visited(r,vector<bool>(c,false));
+	queue<Point> frontier;
+
+	frontier.push(centre);
+	visited[centre.y][centre.x] = true;
+
+	Point result;
+
+	while(!frontier.empty()){
+		Point top = frontier.front();
+		frontier.pop();
+
+		bool flag=false;
+		for(k=top.y-1;k<=top.y+1;k++){
+			for(l=top.x-1;l<=top.x+1;l++){
+				if(IsValidPoint(l,k,r,c)==false||visited[k][l]==true)
+						continue;
+				if(map.at<uchar>(k,l)==255){
+					//Got the nearest free point
+					result.y=k; result.x=l;
+					return result;
+				}
+				Point nbr(l,k);
+				visited[k][l] = true;
+				frontier.push(nbr);
+			}
+		}
+	}
+
+	return centre; //Will return centre
+
+}
+
 void Coverage::DisplayPoints(vector<Point>& locations)
 {
 	//Will display the map with locations desired (coloured points)
@@ -161,6 +199,12 @@ void Coverage::GetBestPositions(vector<Point>& positions)
 			sumdist+= EuclideanDist(temp_sites[i],temp_centres[i]);
 			temp_sites[i] = temp_centres[i];
 		}
+	}
+
+	//Shift blocked centres to nearest free point
+	for(i=0;i<n_agents;i++){
+		if(IsBlocked(temp_centres[i]))
+			temp_centres[i] = GetNearestFreeCentroid(temp_centres[i]);
 	}
 
 	//Final answer is the best estimate

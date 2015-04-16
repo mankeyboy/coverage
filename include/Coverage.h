@@ -38,9 +38,17 @@ public:
 private:
 	Mat map;
 	int n_agents;
+	Point GetNearestFreeCentroid(Point centre);
+	bool IsBlocked(Point p);
 	void GetCentroids(Mat& img,vector<Point>& sites, vector<Point>& centroids);
 	void GetStartingPoints(vector<Point>& sites);
 	void DisplayPoints(vector<Point>& locations);
+
 };
+
+inline bool Coverage::IsBlocked(Point p)
+{
+	return (map.at<uchar>(p.y,p.x)==0);
+}
 
 #endif
