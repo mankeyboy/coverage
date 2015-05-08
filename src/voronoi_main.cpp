@@ -21,7 +21,7 @@ void createEnv(const swarm_simulator::obstacleList msg){
 		if(msg.obstacles[i].radius>1.9){
 		int x = (int)(((msg.obstacles[i].x)+12.0)*20.0);
 		int y = (int)(((msg.obstacles[i].y)+12.0)*20.0);
-		circle(img, Point(x, y), (int)((msg.obstacles[i].radius)*15), Scalar(0), -1);
+		circle(img, Point(x, y), (int)((msg.obstacles[i].radius)*10), Scalar(0), -1);
 		}
 	}
 	Coverage obj(img,n_agents);
