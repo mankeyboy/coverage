@@ -130,9 +130,9 @@ include_directories(
 set( SHARED_SRC src/VoronoiDiagramGenerator.cpp src/Coverage.cpp include/VoronoiDiagramGenerator.h include/Coverage.h)
 set( VORONOI_MAIN src/voronoi_main.cpp ${SHARED_SRC})
 add_executable( voronoi_main ${VORONOI_MAIN})
-target_link_libraries(voronoi_main ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
+target_link_libraries(voronoi_main ${catkin_LIBRARIES}  ${OpenCV_LIBRARIES})
 
-
+###
 #############
 ## Install ##
 #############

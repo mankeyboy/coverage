@@ -18,9 +18,11 @@ void createEnv(const swarm_simulator::obstacleList msg){
 	ros::Rate loop_rate(5);
 	Mat img(480, 480, CV_8U, Scalar(255)); 
 	for(int i = 0; i <msg.obstacles.size(); ++i){
+		if(msg.obstacles[i].radius>1.9){
 		int x = (int)(((msg.obstacles[i].x)+12.0)*20.0);
 		int y = (int)(((msg.obstacles[i].y)+12.0)*20.0);
 		circle(img, Point(x, y), (int)((msg.obstacles[i].radius)*10), Scalar(0), -1);
+		}
 	}
 	Coverage obj(img,n_agents);
 	vector<Point> locations;
@@ -30,7 +32,7 @@ void createEnv(const swarm_simulator::obstacleList msg){
 	    swarm_simulator::obstacleData toAdd;
 	    toAdd.x = ((double)(locations[i].x))/20.0-12.0;
 	    toAdd.y = ((double)(locations[i].y))/20.0-12.0;
-	    toAdd.shape = 0;
+	    toAdd.shape = i;
 	    toAdd.radius = 0.0;
 	    coveragePoints.obstacles.push_back(toAdd);
 	}
