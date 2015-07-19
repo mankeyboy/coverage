@@ -7,4 +7,4 @@ To run the code, prerequisites are :
 To run the code following commands (on separate terminals): <br />
 $ roslaunch swarm_simulator swarm.launch <br />
 $ rosrun swarm_simulator swarm_simulator_node <br />
-$ rosrun coverage voronoi_main [number of agents] 
+$ rosrun swarm_coverage voronoi_main [number of agents] 

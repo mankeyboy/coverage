@@ -1,9 +1,11 @@
 #include <iostream>
 #include <cassert>
 #include <cstdlib>
-#include "VoronoiDiagramGenerator.h"
-#include "swarm_simulator/obstacleList.h"
-#include "swarm_simulator/obstacleData.h"
+
+#include <VoronoiDiagramGenerator.h>
+
+#include <swarm_simulator/obstacleList.h>
+#include <swarm_simulator/obstacleData.h>
 #include "Coverage.h"
 #include "ros/ros.h"
 
@@ -19,9 +21,9 @@ void createEnv(const swarm_simulator::obstacleList msg){
 	Mat img(480, 480, CV_8U, Scalar(255)); 
 	for(int i = 0; i <msg.obstacles.size(); ++i){
 		if(msg.obstacles[i].radius>1.9){
-		int x = (int)(((msg.obstacles[i].x)+12.0)*20.0);
-		int y = (int)(((msg.obstacles[i].y)+12.0)*20.0);
-		circle(img, Point(x, y), (int)((msg.obstacles[i].radius)*10), Scalar(0), -1);
+			int x = (int)(((msg.obstacles[i].x)+12.0)*20.0);
+			int y = (int)(((msg.obstacles[i].y)+12.0)*20.0);
+			circle(img, Point(x, y), (int)((msg.obstacles[i].radius)*10), Scalar(0), -1);
 		}
 	}
 	Coverage obj(img,n_agents);
