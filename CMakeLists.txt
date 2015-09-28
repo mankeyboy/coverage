@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(coverage)
+project(swarm_coverage)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -9,6 +9,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
   message_generation
+  swarm_simulator
 )
 
 ## System dependencies are found with CMake's conventions
@@ -34,7 +35,6 @@ ENDIF()
 ################################################
 ## Declare ROS messages, services and actions ##
 ################################################
-
 ## To declare and build messages, services or actions from within this
 ## package, follow these steps:
 ## * Let MSG_DEP_SET be the set of packages whose message types you use in
@@ -77,9 +77,9 @@ ENDIF()
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
+#generate_messages(
 #   DEPENDENCIES
-#   std_msgs  # Or other packages containing msgs
+#   swarm_simulator  # Or other packages containing msgs
 # )
 
 ###################################
@@ -94,8 +94,8 @@ ENDIF()
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES coverage
-#  CATKIN_DEPENDS other_catkin_pkg
-#  DEPENDS system_lib
+  CATKIN_DEPENDS swarm_simulator
+#  DEPENDS swarm_simulator
 )
 
 ###########
@@ -104,7 +104,7 @@ catkin_package(
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
-# include_directories(include)
+#include_directories(include)
 
 ## Declare a cpp library
 # add_library(coverage
@@ -125,11 +125,13 @@ catkin_package(
 
 include_directories(
   ${catkin_INCLUDE_DIRS}
+# ${swarm_simulator_INCLUDE_DIRS}
 )
 
 set( SHARED_SRC src/VoronoiDiagramGenerator.cpp src/Coverage.cpp include/VoronoiDiagramGenerator.h include/Coverage.h)
 set( VORONOI_MAIN src/voronoi_main.cpp ${SHARED_SRC})
 add_executable( voronoi_main ${VORONOI_MAIN})
+add_dependencies( voronoi_main swarm_simulator_gencpp)
 target_link_libraries(voronoi_main ${catkin_LIBRARIES}  ${OpenCV_LIBRARIES})
 
 ###
